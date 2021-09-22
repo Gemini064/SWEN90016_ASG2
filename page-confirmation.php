@@ -98,6 +98,10 @@
 			$randomID = rand(100, 999);
 
 			if (isset($_POST['SubmitBtn'])) {
+				$total_student = $_POST["TotalStudent"];
+				if ($total_student == "") {
+					$total_student = 0;
+				}
 				$success = $wpdb->insert(
 		        	"wp_confirmation",
 			        array(
@@ -105,11 +109,11 @@
 			            'StartDate'		=> date("Y-m-d", strtotime($_POST["StartDate"])),
 			            'EndDate'		=> date("Y-m-d", strtotime($_POST["EndDate"])),
 			            'TotalCost'		=> $_POST["TotalCost"],
-			            'TotalStudent'	=> $_POST["TotalStudent"],
+			            'TotalStudent'	=> $total_student,
 			            'Participation' => $_POST["participate"],
 			        )
 			    );
-
+				
 				if ($success) {
 					$wpdb->update(
 					    $eoi_table,
@@ -240,7 +244,7 @@
 	})
 
 	function Disabled() {
-		$('#totalStudent').val("");
+		$('#totalStudent').val("0");
 		$('#totalCost').html("$ 0");
 		$('#totalStudent').prop("disabled", true);
 	}
