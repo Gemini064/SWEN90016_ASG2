@@ -106,6 +106,7 @@
 			            'EndDate'		=> date("Y-m-d", strtotime($_POST["EndDate"])),
 			            'TotalCost'		=> $_POST["TotalCost"],
 			            'TotalStudent'	=> $_POST["TotalStudent"],
+			            'Participation' => $_POST["participate"],
 			        )
 			    );
 
@@ -179,9 +180,9 @@
 			        <tr>
 			        	<td>Participate in Specialized Activities?</td>
 			        	<td>
-			        		<input type="radio" id="yes" name="participate" value="Yes" checked onclick="Undisabled()">
+			        		<input type="radio" id="yes" name="participate" value="1" checked onclick="Undisabled()">
 							<label for="yes">Yes</label><br>
-							<input type="radio" id="no" name="participate" value="No" onclick="Disabled()">
+							<input type="radio" id="no" name="participate" value="0" onclick="Disabled()">
 							<label for="no">No</label><br>
 			        	</td>
 			        </tr>
