@@ -13,6 +13,7 @@
 	            'Password'		=> md5($_POST['Password']),
 	        )
 	    );
+	    header('location: http://localhost:8888/login');
 	}
 
 	// if (!isset($_SESSION['decide']) || $_POST['decide'] != $_SESSION['decide']) {
@@ -23,16 +24,15 @@
 	// }
 	
 	// unset($_SESSION['decide']);
-?> 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
-	<?php get_header(); ?>
+	<?php // get_header(); ?>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=, initial-scale=1.0">
 		<title>Sign Up</title>
-		<link rel="stylesheet" href="style.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	</head>
 	<body>		
@@ -64,10 +64,14 @@
 		        </div>
 		        
 		        <button class="btn" type="submit" name="SignUpBtn" style="disabled: false;">Sign Up</button>
+
+		        <p>
+		        	Already a member? <a href="http://localhost:8888/login/">Login</a>
+		        </p>
 		    </form>
 		</div>
 	</body>
-	<?php get_footer() ?>
+	<?php // get_footer() ?>
 </html>
 
 <script type="text/javascript">

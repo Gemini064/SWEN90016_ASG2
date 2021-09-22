@@ -7,6 +7,9 @@
 	}
 
 	// if login and it's admin user
+	if (isset($_SESSION['success']) && $_SESSION['success'] == "admin user") {
+		header("Location: http://localhost:8888/listofeoi");
+	}
 	//
 
 	$error_flag = 1;
@@ -25,7 +28,7 @@
 			$_SESSION['account'] = $email;
 			$_SESSION['success'] = "admin user";
 			// redirect to the admin user page
-			// header("Location: http://localhost:8888/");
+			header("Location: http://localhost:8888/listofeoi");
 			// echo "admin user";
 		}else if ($count >= 1){
 			$_SESSION['account'] = $email;
@@ -37,7 +40,7 @@
 			$error_flag = 0;
 		}
 	}	
-?> 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,9 +49,76 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=, initial-scale=1.0">
 		<title>Login</title>
-		<link rel="stylesheet" href="style.css">
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	</head>
+	<style type="text/css">
+		html {
+		    box-sizing: border-box;
+		    font-family: 'Open Sans', sans-serif;
+		    text-align: center;
+		    margin: 0;
+		    padding: 0;
+		} 
+
+		body {
+		    background-color: #2a9d8f;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    min-height: 100vh;
+		    margin: 0;
+		    padding: 0;
+		}
+
+		span, p, a {
+		    color: white;
+		    font-size: 24px;
+		    margin: 15px 0;
+		    padding: 12px 30px;
+		    line-height: 25px;
+		    
+		}
+
+
+		button {
+		    border: 0px;
+		    border-radius: 10px;
+		    color: #005f73;
+		    display: inline-block;
+		    padding: 20px 100px;
+		    font-size: 24px;
+		    text-decoration: none;
+		    margin: 15px 0;
+		    margin-top: 20px;
+		    transition: background-color 200ms ease-in-out;
+		}
+
+		img {
+		    width: 200px;
+		    height: 200px;
+		}
+
+		input{
+		    outline-style: none;
+		    border: 1px solid #ccc; 
+		    border-radius: 3px;
+		    padding: 14px 14px;
+		    width: 520px;
+		    font-size: 24px;
+		}
+
+
+		.form__group {
+		    
+		    align-items: center;
+		    margin: 25px 0;
+		   
+		}
+
+		.form_input{
+		    border-radius: 150px;
+		}
+	</style>
 	<body>		
 		<div class="user">
 		    <header class="user__header">
@@ -86,7 +156,7 @@
 		window.history.replaceState(null, null, window.location.href);
 	})
 
-	// check if the form is valid
+	// Check if the form is valid
 	$('.form').submit(function(){
 		var isFormValid = true;
 
