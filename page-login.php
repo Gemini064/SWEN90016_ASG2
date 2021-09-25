@@ -10,7 +10,6 @@
 	if (isset($_SESSION['success']) && $_SESSION['success'] == "admin user") {
 		header("Location: http://localhost:8888/listofeoi");
 	}
-	//
 
 	$error_flag = 1;
 	if(isset($_POST['LoginBtn'])) {
@@ -49,6 +48,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=, initial-scale=1.0">
 		<title>Login</title>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	</head>
 	<style type="text/css">
@@ -61,7 +61,12 @@
 		} 
 
 		body {
-		    background-color: #2a9d8f;
+		    background: #50a3a2;
+			background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+			background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+			background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
+			background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
+			
 		    display: flex;
 		    justify-content: center;
 		    align-items: center;
@@ -72,47 +77,89 @@
 
 		span, p, a {
 		    color: white;
-		    font-size: 24px;
-		    margin: 15px 0;
-		    padding: 12px 30px;
+		    font-size: 20px;
 		    line-height: 25px;
-		    
 		}
 
-
-		button {
-		    border: 0px;
-		    border-radius: 10px;
-		    color: #005f73;
-		    display: inline-block;
-		    padding: 20px 100px;
-		    font-size: 24px;
-		    text-decoration: none;
-		    margin: 15px 0;
-		    margin-top: 20px;
-		    transition: background-color 200ms ease-in-out;
+		p > a:hover{
+			color: #165C3F;
 		}
 
-		img {
-		    width: 200px;
-		    height: 200px;
+		.warning {
+			color: #9C1800;
+			text-align: left;
 		}
 
 		input{
-		    outline-style: none;
-		    border: 1px solid #ccc; 
-		    border-radius: 3px;
-		    padding: 14px 14px;
-		    width: 520px;
-		    font-size: 24px;
+			display: block;
+			appearance: none;
+			outline: 0;
+			border: 1px solid rgba(255, 255, 255, 0.4);
+			background-color: rgba(255, 255, 255, 0.2);
+			width: 520px;
+			
+			color: rgb(255, 255, 255);
+			border-radius: 3px;
+			padding: 16px;
+			margin: 0 auto 15px auto;
+			display: block;
+			text-align: left;
+			font-size: 24px;
+			
+			
+			transition-duration: 0.25s;
+			font-weight: 300;
 		}
 
+		input:hover{
+			background-color: rgba(255, 255, 255, 0.4);
+		}
+		
+		input:focus{
+			background-color: white;
+			/*width: 300px;*/
+			color: #53e3a6;
+		}
+		
+		::placeholder {
+			color: white;
+			opacity: 1; /* Firefox */
+		}
+
+		:-ms-input-placeholder { /* Internet Explorer 10-11 */
+			color: white;
+		}
+
+		::-ms-input-placeholder { /* Microsoft Edge */
+			color: white;
+		}
+
+		button{
+			outline: 0;
+			background-color: white;
+			border: 0;
+			padding: 20px 100px;
+			color: #53e3a6;
+			margin-top: 12px;
+			border-radius: 10px;
+			width: 350px;
+			cursor: pointer;
+			font-size: 24px;
+		}
+
+		button:hover{
+			background-color: #E7E5DE;
+			color: #165C3F;
+		}
+
+		img {
+		    width: 170px;
+		    height: 170px;
+		}
 
 		.form__group {
-		    
 		    align-items: center;
 		    margin: 25px 0;
-		   
 		}
 
 		.form_input{
@@ -125,16 +172,15 @@
 		        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3219/logo.svg" alt="" />
 		        <br/>
 		    </header>
-		    
 		    <form class="form" method="post" action="./">
 		        <div class="form__group">
-		            <input type="email" placeholder="Email" class="form__input" name="Email"/>
-		            <span class="warning" style="display: none;">Please enter the Email.</span>
+		            <input type="email" placeholder="&#xF0e0;  Email" class="form__input" name="Email" style="font-family:Arial, FontAwesome"/>
+		            <span class="warning" style="display: none;">Please enter your email address.</span>
 		        </div>
 		        
 		        <div class="form__group">
-		            <input type="password" placeholder="Password" class="form__input" name="Password"/>
-		            <span class="warning" style="display: none;">Please enter the Password.</span>
+		            <input type="password" placeholder="&#xF023;  Password" class="form__input" name="Password" style="font-family:Arial, FontAwesome"/>
+		            <span class="warning" style="display: none;">Please enter your password.</span>
 		        </div>
 		        
 		        <?php if($error_flag == 0) {?>
@@ -142,9 +188,7 @@
 		        <?php } ?>
 		        <button class="btn" type="submit" name="LoginBtn" style="disabled: false;">Login</button>
 
-		        <p>
-		        	Not yet a member? <a href="http://localhost:8888/register/">Sign up</a>
-		        </p>
+		        <p>Not yet a member? <a href="http://localhost:8888/register/">Sign up</a></p>
 		    </form>
 		</div>
 	</body>

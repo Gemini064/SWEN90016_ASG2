@@ -139,87 +139,190 @@
 	<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<style type="text/css">
-		table, td {
-		    border: 1px solid #333;
+		@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+		body{
+			background: #50a3a2;
+		  	font-family: 'Roboto', sans-serif;
+		  	color: #fff;
+		  	font-size: 20px;
 		}
-
-		thead, tfoot {
-		    background-color: #333;
-		    color: #fff;
+		section{
+			margin: 20px 80px;
+		}
+		table{
+			width: 100%;
+			table-layout: fixed;
+		}
+		.tbl-header{
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+		.tbl-content{
+			/*height:300px;*/
+			overflow-x:auto;
+			margin-top: 0px;
+			border: 1.5px solid rgba(255,255,255,0.2);
+		}
+		th{
+			padding: 20px 15px;
+			text-algin: left;
+			font-weight: 500;
+			font-size: 20px;
+			color: #fff;
+		}
+		td{
+			padding: 15px;
+			text-align: left;
+			vertical-align:middle;
+			font-weight: 500;
+			font-size: 18px;
+			color: #fff;
+			text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.1);
+			border-bottom: solid 1.5px rgba(255,255,255,0.2);
+		}
+		button{
+			color: #fff;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: 600;
+			margin: 12px;
+			padding: 12px 20px;
+			transition: all 200ms linear;
+			border: 1px solid rgba(34, 87, 86, 0.1);
+			box-shadow: 0px 2px 0 rgba(34,87,86, 0.1), 2px 4px 6px rgba(34,87,86, 0.1);
+			background: rgba(255,255,255,0.3);
+		}
+		button:hover{
+			background: rgba(34,87,86, 0.3);
+			border: 1px solid rgba(0, 0, 0, 0.05);
+			box-shadow: 1px 1px 2px rgba(255, 255, 255, 0.2);
+			text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
+			color: rgba(0, 0, 0, 0.05);
+		}
+		button > a{
+			text-decoration: none;
+			color: #fff;
+			transition: all 200ms linear;
+		}
+		button:hover > a{
+			color: #BFBFBF;
+		}
+		form{
+			text-align: center;
+		}
+		input{
+			border: 1px solid rgba(255, 255, 255, 0.4);
+			background-color: rgba(255, 255, 255, 0.2);
+			border-radius: 3px;
+			padding: 9px;
+			font-size: 20px;
+			margin-left: 5px;
+		}
+		input:hover{
+			background: rgba(255, 255, 255, 0.4);
+		}
+		.warning {
+			color: #9C1800;
+			font-size: 20px;
 		}
 	</style>
 </head>
 <body>
 	<?php if ($error_flag == 0) { ?>
-		<button><a href="http://localhost:8888/expressionofinterests/">Back</a></button>
+		<button><a href="http://localhost:8888/expressionofinterests/">BACK</a></button>
 		<?php if ($status == 3) { ?>
+		<section>
 		<form class="form" method="post" action="./">
-			<table>
-				<thead>
-					<tr>
-			            <th colspan="2">Confirmation</th>
-			        </tr>
-				</thead>
-				<tbody>
-					<tr>
-			            <td>Expression of Interest Acceptance ID</td>
-			            <td><?php echo $randomID; ?></td>
-			        </tr>
-			        <tr>
-			        	<td>School Name</td>
-			        	<td><?php echo $school_name; ?></td>
-			        </tr>
-			        <tr>
-			        	<td>School Type</td>
-			        	<td><?php echo $school_type; ?></td>
-			        </tr>
-			        <tr>
-			        	<td>Start Date</td>
-			        	<td><input type="text" id="from" readonly="readonly" name="StartDate" value="<?php echo $start_date; ?>"/></td>
-			        </tr>
-			        <tr>
-			        	<td>End Date</td>
-			        	<td><input type="text" id="to" readonly="readonly" name="EndDate" value="<?php echo $end_date; ?>"/></td>
-			        </tr>
-			        <tr>
-			        	<td>Participate in Specialized Activities?</td>
-			        	<td>
-			        		<input type="radio" id="yes" name="participate" value="1" checked onclick="Undisabled()">
-							<label for="yes">Yes</label><br>
-							<input type="radio" id="no" name="participate" value="0" onclick="Disabled()">
-							<label for="no">No</label><br>
-			        	</td>
-			        </tr>
-			        <tr>
-			        	<td>Total Students Participating</td>
-			        	<td><input id="totalStudent" type="number" name="TotalStudent" min="0" value="0" onchange="Recalculation()"/></td>
-			        </tr>
-			        <tr>
-			        	<td>Cost Per Student</td>
-			        	<td>$ 30</td>
-			        </tr>
-			        <tr>
-			        	<td>Total Cost</td>
-			        	<td>$<input id="totalCost" type="text" name="TotalCost" readonly="readonly" value="0"></td>
-			        </tr>
-				</tbody>
-			</table>
+			<div class="tbl-header">
+				<table>
+					<thead>
+						<tr>
+				            <th colspan="2">CONFIRMING A TIME FROM THE SCHEDULE</th>
+				        </tr>
+					</thead>
+				</table>
+			</div>
+
+			<div class="tbl-content">
+				<table>
+					<tbody>
+						<tr>
+				            <td>Expression of Interest Acceptance ID</td>
+				            <td><?php echo $randomID; ?></td>
+				        </tr>
+				        <tr>
+				        	<td>School Name</td>
+				        	<td><?php echo $school_name; ?></td>
+				        </tr>
+				        <tr>
+				        	<td>School Type</td>
+				        	<td><?php echo $school_type; ?></td>
+				        </tr>
+				        <tr>
+				        	<td>Start Date</td>
+				        	<td><input type="text" id="from" readonly="readonly" name="StartDate" value="<?php echo $start_date; ?>"/></td>
+				        </tr>
+				        <tr>
+				        	<td>End Date</td>
+				        	<td><input type="text" id="to" readonly="readonly" name="EndDate" value="<?php echo $end_date; ?>"/></td>
+				        </tr>
+				        <tr>
+				        	<td>Participate in Specialized Activities?</td>
+				        	<td>
+				        		<input type="radio" id="yes" name="participate" value="1" checked onclick="Undisabled()">
+								<label for="yes">Yes</label><br>
+								<input type="radio" id="no" name="participate" value="0" onclick="Disabled()">
+								<label for="no">No</label><br>
+				        	</td>
+				        </tr>
+				        <tr>
+				        	<td>Total Students Participating</td>
+				        	<td><input id="totalStudent" type="number" name="TotalStudent" min="0" value="0" onchange="Recalculation()"/></td>
+				        </tr>
+				        <tr>
+				        	<td>Cost Per Student</td>
+				        	<td>$ 30</td>
+				        </tr>
+				        <tr>
+				        	<td>Total Cost</td>
+				        	<td>$<input id="totalCost" type="text" name="TotalCost" readonly="readonly" value="0"></td>
+				        </tr>
+					</tbody>
+				</table>
+			</div>
+
 			<div class="warning">
 				<p id="tooShort" style="display: none;">Should be at least 1 week!</p>
 				<p id="tooLong" style="display: none;">Should be no more than 3 weeks!</p>
 			</div>
-			<button class="btn" type="submit" name="SubmitBtn" style="disabled: false;">Confirm</button>
+			<button class="btn" type="submit" name="SubmitBtn" style="disabled: false;">CONFIRM</button>
 		</form>
+		</section>
 		<?php } else if ($status == 2) { ?>
-			<div>
-				<p>Registered EOI will be scheduled soon~ The following is the information of your Expression of Interest!</p>
-				<?php 
-					$size = count($result);
-					for ($i = 0; $i < $size; $i+=2){
-				?>
-					<p><?php echo $result[$i] . ": " . $result[$i+1]; ?></p>
-				<?php } ?>
-			</div>
+			<section style="text-align: center;">
+				<p style="color: #572F19; font-weight: 600;">
+					Registered EOI will be scheduled soon. The following is the information of your Expression of Interest for a bus visit!
+				</p>
+				<table class="tbl-header">
+					<thead>
+						<tr>
+							<th colspan="2">REGISTERED EOI</th>
+						</tr>
+					</thead>
+				</table>
+				<table class="tbl-content">
+					<tbody>
+					<?php 
+						$size = count($result);
+						for ($i = 0; $i < $size; $i+=2){
+					?>
+						<tr>
+							<td><?php echo $result[$i];?></td>
+							<td><?php echo $result[$i+1]; ?></td>
+						</tr>
+					<?php } ?>
+					</tbody>
+				</table>
+			</section>
 		<?php } ?>
 	<?php } else if ($error_flag == 1) { ?>
 	<div class="error_login">
@@ -245,7 +348,7 @@
 
 	function Disabled() {
 		$('#totalStudent').val("0");
-		$('#totalCost').html("$ 0");
+		$('#totalCost').val("0");
 		$('#totalStudent').prop("disabled", true);
 	}
 
