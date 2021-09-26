@@ -2,16 +2,16 @@
 	session_start();
 	$error_flag = 0;
 
+	global $custom_url;
+
 	if (!isset($_SESSION['account'])) {
 		$error_flag = 1;
 		$_SESSION['msg'] = "You must log in first";
-  		// header('location: http://localhost:8888/login');
 	}
 
 	if (isset($_SESSION['success']) && $_SESSION['success'] != "admin user") {
 		$error_flag = 2;
 		$_SESSION['msg'] = "Oops! Wrong Authority!";
-  		// header('location: http://localhost:8888/login');
 	}
 
 	// Get data of active schools from table "wp_eoi"
@@ -56,7 +56,7 @@
 		session_destroy();
 		unset($_SESSION['account']);
 		unset($_SESSION['success']);
-		header('location: http://localhost:8888/listofeoi');
+		header("Location: " . $custom_url . "/listofeoi");
 	}
 ?>
 
@@ -171,7 +171,7 @@
 </head>
 <body>
 	<?php if ($error_flag == 0) { ?>
-		<button><a href="http://localhost:8888/expressionofinterests?logout='1'">LOGOUT</a></button>
+		<button><a href="<?php echo $custom_url; ?>/expressionofinterests?logout='1'">LOGOUT</a></button>
 		<section>
 			<h1>EXPRESSION OF INTEREST LIST</h1>
 			<div class="tbl-header">
@@ -193,7 +193,7 @@
 			            	for ($i = 0; $i < $size; $i++){
 			            ?>
 				            <tr>
-				            	<td><a href="http://localhost:8888/schedule/?eid=<?php echo $arr_eoi_id[$i]; ?>"><?php echo $arr_name[$i]; ?></a></td>
+				            	<td><a href="<?php echo $custom_url; ?>/schedule/?eid=<?php echo $arr_eoi_id[$i]; ?>"><?php echo $arr_name[$i]; ?></a></td>
 				            	<td><?php echo $arr_type[$i]; ?></td>
 				            </tr>
 			            <?php } ?>
@@ -233,7 +233,7 @@
 	<?php } else if ($error_flag == 1) { ?>
 	<div class="error_login">
 		<p>
-			You must login first. <a href="http://localhost:8888/login/">Login</a>
+			You must login first. <a href="<?php echo $custom_url; ?>/login/">Login</a>
 		</p>	
 	</div>
 	

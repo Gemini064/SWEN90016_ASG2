@@ -1,5 +1,7 @@
 <?php 
 	session_start();
+	global $custom_url;
+
 	if (isset($_POST['SignUpBtn'])) {
 		global $wpdb;
 		$school_table = $wpdb->prefix . 'registered_school';
@@ -13,7 +15,7 @@
 	            'Password'		=> md5($_POST['Password']),
 	        )
 	    );
-	    header('location: http://localhost:8888/login');
+	    header("Location: " . $custom_url . "/login");
 	}
 ?>
 
@@ -173,7 +175,7 @@
 		        <button class="btn" type="submit" name="SignUpBtn" style="disabled: false;">Sign Up</button>
 
 		        <p>
-		        	Already a member? <a href="http://localhost:8888/login/">Login</a>
+		        	Already a member? <a href="<?php echo $custom_url; ?>/login/">Login</a>
 		        </p>
 		    </form>
 		</div>

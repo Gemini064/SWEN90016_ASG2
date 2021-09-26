@@ -1,17 +1,16 @@
 <?php
 	session_start();
 	$error_flag = 0;
+	global $custom_url;
 
 	if (!isset($_SESSION['account'])) {
 		$error_flag = 1;
 		$_SESSION['msg'] = "You must log in first";
-  		// header('location: http://localhost:8888/login');
 	}
 
 	if (isset($_SESSION['success']) && $_SESSION['success'] != "school") {
 		$error_flag = 2;
 		$_SESSION['msg'] = "Oops! Wrong Authority!";
-  		// header('location: http://localhost:8888/login');
 	}
 
 
@@ -114,7 +113,7 @@
 		    
 		    $headers .= 'From: <10099candy@gmail.com>';
 		    wp_mail($user_email, "Expression of Interests", $msg, $headers);
-		    header('location: http://localhost:8888/expressionofinterests');
+		    header("Location: " . $custom_url . "/expressionofinterests");
 	    } else {
 	    	echo "Oops! Something goes wrong, please try again.";
 	    }
@@ -126,7 +125,7 @@
 		session_destroy();
 		unset($_SESSION['account']);
 		unset($_SESSION['success']);
-		header('location: http://localhost:8888/expressionofinterests');
+		header("Location: " . $custom_url . "/expressionofinterests");
 	}
 ?>
 
@@ -255,7 +254,7 @@
 </head>
 <body>
 	<?php if ($error_flag == 0) { ?>
-		<button><a href="http://localhost:8888/expressionofinterests?logout='1'">LOGOUT</a></button>
+		<button><a href="<?php echo $custom_url; ?>/expressionofinterests?logout='1'">LOGOUT</a></button>
 		<?php if ($status == 1) { //inner for loop?>
 		<div class="expression_of_interests">
 		    <form class="form" method="post" action="./">
@@ -360,7 +359,7 @@
 				$_SESSION['status'] = $status;
 		?>
 			<div>
-				<button><a href="http://localhost:8888/confirmation">CONFIRMING A TIME FROM THE SCHEDULE</a></button>
+				<button><a href="<?php echo $custom_url; ?>/confirmation">CONFIRMING A TIME FROM THE SCHEDULE</a></button>
 			</div>
 		<?php } ?>
 		<div class="confirm_area row">
@@ -373,7 +372,7 @@
 			?>
 					<div class="confirm_block col-md-12">
 						<button style="margin: 10px 0px 5px 0px;">
-							<a href="http://localhost:8888/cancel/?eid=<?php echo $confirm_arr[$i]; ?>">CANCEL EOI #<?php echo $confirm_arr[$i]; ?></a>
+							<a href="<?php echo $custom_url; ?>/cancel/?eid=<?php echo $confirm_arr[$i]; ?>">CANCEL EOI #<?php echo $confirm_arr[$i]; ?></a>
 						</button>
 					</div>
 			<?php
@@ -382,7 +381,7 @@
 		</div>
 	<?php } else if ($error_flag == 1) { ?>
 	<div class="error_login">
-		You must login first. <button><a href="http://localhost:8888/login/">Login</a></button>
+		You must login first. <button><a href="<?php echo $custom_url; ?>/login/">Login</a></button>
 	</div>
 	
 	<?php } else if ($error_flag == 2) { ?>

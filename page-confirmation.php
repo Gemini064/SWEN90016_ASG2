@@ -1,17 +1,15 @@
 <?php 
 	session_start();
 	$error_flag = 0;
-
+	global $custom_url;
 	if (!isset($_SESSION['account'])) {
 		$error_flag = 1;
 		$_SESSION['msg'] = "You must log in first";
-  		// header('location: http://localhost:8888/login');
 	}
 
 	if (isset($_SESSION['success']) && $_SESSION['success'] != "school") {
 		$error_flag = 2;
 		$_SESSION['msg'] = "Oops! Wrong Authority!";
-  		// header('location: http://localhost:8888/login');
 	}
 
 	/*
@@ -120,7 +118,7 @@
 					    array('Confirmation' => 1),
 					    array('ID' => $eid)
 					);
-					header('location: http://localhost:8888/expressionofinterests');
+					header("Location: " . $custom_url . "/expressionofinterests");
 				} else {
 					echo "Oops! Something went wrong, please try again!!!";
 				}
@@ -228,7 +226,7 @@
 </head>
 <body>
 	<?php if ($error_flag == 0) { ?>
-		<button><a href="http://localhost:8888/expressionofinterests/">BACK</a></button>
+		<button><a href="<?php echo $custom_url; ?>/expressionofinterests/">BACK</a></button>
 		<?php if ($status == 3) { ?>
 		<section>
 		<form class="form" method="post" action="./">
@@ -327,7 +325,7 @@
 	<?php } else if ($error_flag == 1) { ?>
 	<div class="error_login">
 		<p>
-			You must login first. <a href="http://localhost:8888/login/">Login</a>
+			You must login first. <a href="<?php echo $custom_url; ?>/login/">Login</a>
 		</p>	
 	</div>
 	

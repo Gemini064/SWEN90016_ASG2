@@ -1,14 +1,15 @@
 <?php
 	session_start();
+	global $custom_url;
 
 	// if login and it's school
 	if (isset($_SESSION['success']) && $_SESSION['success'] == "school") {
-		header("Location: http://localhost:8888/expressionofinterests");
+		header("Location: " . $custom_url . "/expressionofinterests");
 	}
 
 	// if login and it's admin user
 	if (isset($_SESSION['success']) && $_SESSION['success'] == "admin user") {
-		header("Location: http://localhost:8888/listofeoi");
+		header("Location: " . $custom_url . "/listofeoi");
 	}
 
 	$error_flag = 1;
@@ -27,13 +28,13 @@
 			$_SESSION['account'] = $email;
 			$_SESSION['success'] = "admin user";
 			// redirect to the admin user page
-			header("Location: http://localhost:8888/listofeoi");
+			header("Location: " . $custom_url . "/listofeoi");
 			// echo "admin user";
 		}else if ($count >= 1){
 			$_SESSION['account'] = $email;
 			$_SESSION['success'] = "school";
 			// redirect to the school expression of interest page
-			header("Location: http://localhost:8888/expressionofinterests");
+			header("Location: " . $custom_url . "/expressionofinterests");
 		}else{
 			// show errors
 			$error_flag = 0;
@@ -188,7 +189,7 @@
 		        <?php } ?>
 		        <button class="btn" type="submit" name="LoginBtn" style="disabled: false;">Login</button>
 
-		        <p>Not yet a member? <a href="http://localhost:8888/register/">Sign up</a></p>
+		        <p>Not yet a member? <a href="<?php echo $custom_url; ?>/register/">Sign up</a></p>
 		    </form>
 		</div>
 	</body>

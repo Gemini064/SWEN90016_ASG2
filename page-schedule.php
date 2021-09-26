@@ -1,17 +1,17 @@
 <?php
 	session_start();
 	$error_flag = 0;
+	global $custom_url;
+
 
 	if (!isset($_SESSION['account'])) {
 		$error_flag = 1;
 		$_SESSION['msg'] = "You must log in first";
-  		// header('location: http://localhost:8888/login');
 	}
 
 	if (isset($_SESSION['success']) && $_SESSION['success'] != "admin user") {
 		$error_flag = 2;
 		$_SESSION['msg'] = "Oops! Wrong Authority!";
-  		// header('location: http://localhost:8888/login');
 	}
 
 	// Get data from table "wp_eoi"
@@ -96,7 +96,7 @@
 			unset($_SESSION['SchoolID']);
 			unset($_SESSION['Address']);
 			unset($_SESSION['EID']);
-			header('location: http://localhost:8888/listofeoi');
+			header("Location: " . $custom_url . "/listofeoi");
 		} else {
 			echo "Fail to send email, check if the email provided exists.";
 		}
@@ -218,7 +218,7 @@
 </head>
 <body>
 	<?php if ($error_flag == 0) { ?>
-	<button><a href="http://localhost:8888/listofeoi/">BACK</a></button>
+	<button><a href="<?php echo $custom_url; ?>/listofeoi/">BACK</a></button>
 	<section>
 		<div class="tbl-header">
 			<table>
@@ -272,7 +272,7 @@
 	<?php } else if ($error_flag == 1) { ?>
 	<div class="error_login">
 		<p>
-			You must login first. <a href="http://localhost:8888/login/">Login</a>
+			You must login first. <a href="<?php echo $custom_url; ?>/login/">Login</a>
 		</p>	
 	</div>
 	
